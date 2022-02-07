@@ -58,8 +58,12 @@ public class HotelController {
 	){
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
+			Hotel hotelAux=this.hotelService.getByName(request.getName());
+			if(hotelAux != null && hotelAux.getId() != id) {
+				throw new NameAlreadyExistsException("Name already exists");
+			}
 			BeanUtils.copyProperties(request, hotel);
-			return ResponseEntity.ok(this.hotelService.save(hotel));
+			return ResponseEntity.ok(this.hotelService.save(hotel));	
 		}
 		throw new ModelNotFoundException("Hotel not found");
 	}
