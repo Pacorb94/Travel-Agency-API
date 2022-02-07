@@ -26,17 +26,21 @@ public class HotelService implements HotelServiceInterface{
 	public Hotel save(Hotel hotel) {
 		return this.hotelRepo.save(hotel);
 	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Hotel> getAll() {
-		return this.hotelRepo.findAll();
-	}
 	
 	@Override
 	@Transactional(readOnly = true)
 	public Hotel getById(Long id) {
 		Optional<Hotel> hotel=this.hotelRepo.findById(id);
+		if(hotel.isPresent()) {
+			return hotel.get();
+		}
+		return null;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Hotel getByName(String name) {
+		Optional<Hotel> hotel=this.hotelRepo.findByName(name);
 		if(hotel.isPresent()) {
 			return hotel.get();
 		}
@@ -48,17 +52,11 @@ public class HotelService implements HotelServiceInterface{
 	public List<Hotel> getByCity(String city) {
 		return this.hotelRepo.findByCity(city).get();
 	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Hotel> getByPlacesAvailable(int placesAvailable) {
-		return this.hotelRepo.findByPlacesAvailable(placesAvailable).get();
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Hotel> getByCategory(int category) {
-		return this.hotelRepo.findByCategory(category).get();
+	public List<Hotel> getByPlacesAvailable(int places) {
+		return this.hotelRepo.findByPlacesAvailable(places).get();
 	}
 
 	@Override
