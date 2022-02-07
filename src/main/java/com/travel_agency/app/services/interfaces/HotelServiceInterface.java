@@ -9,15 +9,13 @@ public interface HotelServiceInterface {
 	
 	public Hotel save(Hotel hotel);
 	
-	public List<Hotel> getAll();
-	
 	public Hotel getById(Long id);
+	
+	public Hotel getByName(String name);
 	
 	public List<Hotel> getByCity(String city);
 	
-	public List<Hotel> getByPlacesAvailable(int placesAvailable);
-	
-	public List<Hotel> getByCategory(int category);
+	public List<Hotel> getByPlacesAvailable(int places);
 	
 	public void delete(Long id);
 }
