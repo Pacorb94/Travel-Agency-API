@@ -9,8 +9,6 @@ public interface FlightServiceInterface {
 	
 	public Flight save(Flight flight);
 	
-	public List<Flight> getAll();
-	
 	public Flight getById(Long id);
 	
 	public List<Flight> getBySeatsAvailable(int seatsAvailable);
