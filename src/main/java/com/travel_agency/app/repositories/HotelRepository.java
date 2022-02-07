@@ -16,10 +16,13 @@ public interface HotelRepository extends JpaRepository<Hotel, Long>{
 	
 	// Al usar findBy... ya está configurado para buscar
 	@Transactional(readOnly = true)
+	public Optional<Hotel> findByName(String name);
+	
+	@Transactional(readOnly = true)
 	public Optional<List<Hotel>> findByCity(String city);
 
 	@Transactional(readOnly = true)
-	@Query("select h from hotels h where h.places_available >= ?1")
+	@Query("select h from Hotel h where h.placesAvailable >= ?1")
 	public Optional<List<Hotel>> findByPlacesAvailable(int placesAvailable);
 
 	@Transactional(readOnly = true)
