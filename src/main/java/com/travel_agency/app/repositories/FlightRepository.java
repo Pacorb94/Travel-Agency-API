@@ -15,10 +15,10 @@ import com.travel_agency.app.models.Flight;
 public interface FlightRepository extends JpaRepository<Flight, Long>{
 
 	@Transactional(readOnly = true)
-	@Query("select f from flights f where f.seats_available >= ?1")
+	@Query("select f from Flight f where f.seatsAvailable >= ?1")
 	public Optional<List<Flight>> findBySeatsAvailable(int seatsAvailable);
 	
 	@Transactional(readOnly = true)
-	@Query("select f from flights f where f.price <= ?1")
+	@Query("select f from Flight f where f.price <= ?1")
 	public Optional<List<Flight>> findByPrice(float price);
 }

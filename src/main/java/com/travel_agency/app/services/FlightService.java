@@ -30,12 +30,6 @@ public class FlightService implements FlightServiceInterface{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Flight> getAll() {
-		return this.flightRepo.findAll();
-	}
-
-	@Override
-	@Transactional(readOnly = true)
 	public Flight getById(Long id) {
 		Optional<Flight> flight=this.flightRepo.findById(id);
 		if(flight.isPresent()) {
