@@ -8,6 +8,8 @@ import javax.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.travel_agency.app.requests.HotelRequest;
+
 
 @Entity
 @Table(name = "hotels")
@@ -42,6 +44,14 @@ public class Hotel implements Serializable {
 	
 	public Hotel() {
 		
+	}
+	
+	public void setAllProperties(HotelRequest request) {
+		this.setName(request.getName());
+		this.setCity(request.getCity());
+		this.setCategory(request.getCategory());
+		this.setPlacesAvailable(request.getPlacesAvailable());
+		this.setPrice(request.getPrice());
 	}
 
 	public Long getId() {
