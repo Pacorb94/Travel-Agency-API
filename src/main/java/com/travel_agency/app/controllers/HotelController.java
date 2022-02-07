@@ -24,9 +24,9 @@ public class HotelController {
 	
 	@PostMapping
 	public ResponseEntity<Hotel> create(@Valid @RequestBody HotelRequest request){
-		Hotel hotel=this.hotelService.getByName(request.getName());
-		if(hotel == null) {
-			BeanUtils.copyProperties(request, hotel);
+		if(this.hotelService.getByName(request.getName()) == null) {
+			Hotel hotel=new Hotel();
+			hotel.setAllProperties(request);
 			return ResponseEntity.created(null).body(this.hotelService.save(hotel));
 		}
 		throw new NameAlreadyExistsException("Name already exists");
@@ -41,25 +41,14 @@ public class HotelController {
 		throw new ModelNotFoundException("Hotel not found");
 	}
 	
-	@GetMapping("/by-name/{name}")
-	public ResponseEntity<Hotel> getByName(@PathVariable String name){
-		Hotel hotel=this.hotelService.getByName(name);
-		if(hotel != null) {
-			return ResponseEntity.ok(hotel);
-		}
-		throw new ModelNotFoundException("Hotel not found");
-	}
-	
 	@GetMapping("/by-city/{city}")
-	public ResponseEntity <List<Hotel>> getByCity(@PathVariable String city){
-		List<Hotel> hotels=this.hotelService.getByCity(city);
-		return ResponseEntity.ok(hotels);	
+	public ResponseEntity<List<Hotel>> getByCity(@PathVariable String city){
+		return ResponseEntity.ok(this.hotelService.getByCity(city));	
 	}
 	
 	@GetMapping("/by-places/{places}")
-	public ResponseEntity <List<Hotel>> getByCity(@PathVariable int places){
-		List<Hotel> hotels=this.hotelService.getByPlacesAvailable(places);
-		return ResponseEntity.ok(hotels);	
+	public ResponseEntity<List<Hotel>> getByCity(@PathVariable int places){
+		return ResponseEntity.ok(this.hotelService.getByPlacesAvailable(places));	
 	}
 	
 	@PutMapping("/{id}")
@@ -69,8 +58,14 @@ public class HotelController {
 	){
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
+			Hotel hotelAux=this.hotelService.getByName(request.getName());
+			/*Comprobamos si el nombre ya existe y si el id es distinto al que
+			vamos a modificar*/
+			if(hotelAux != null && hotelAux.getId() != id) {
+				throw new NameAlreadyExistsException("Name already exists");
+			}
 			BeanUtils.copyProperties(request, hotel);
-			return ResponseEntity.ok(this.hotelService.save(hotel));
+			return ResponseEntity.ok(this.hotelService.save(hotel));	
 		}
 		throw new ModelNotFoundException("Hotel not found");
 	}
