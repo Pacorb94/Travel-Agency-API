@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Long>{
 	public Optional<List<Hotel>> findByCity(String city);
 
 	@Transactional(readOnly = true)
+	@Query("select h from hotels h where h.places_available >= ?1")
 	public Optional<List<Hotel>> findByPlacesAvailable(int placesAvailable);
 
 	@Transactional(readOnly = true)
