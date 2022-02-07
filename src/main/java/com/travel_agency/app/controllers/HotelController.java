@@ -59,6 +59,7 @@ public class HotelController {
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
 			Hotel hotelAux=this.hotelService.getByName(request.getName());
+			//Comprobamos si el nombre ya existe y si el id es el mismo al nuestro
 			if(hotelAux != null && hotelAux.getId() != id) {
 				throw new NameAlreadyExistsException("Name already exists");
 			}
