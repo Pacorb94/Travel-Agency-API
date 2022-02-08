@@ -9,11 +9,11 @@ public interface FlightServiceInterface {
 	
 	public Flight save(Flight flight);
 	
-	public Flight getById(Long id);
+	public Flight getById(long id);
 	
 	public List<Flight> getBySeatsAvailable(int seatsAvailable);
 	
 	public List<Flight> getByPrice(float price);
 	
-	public void delete(Long id);
+	public void delete(long id);
 }

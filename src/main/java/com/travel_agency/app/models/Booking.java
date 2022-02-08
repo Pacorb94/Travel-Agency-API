@@ -17,7 +17,7 @@ public class Booking implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
 	@Column(length = 9, nullable = false)
 	private String dni;
@@ -40,7 +40,7 @@ public class Booking implements Serializable {
 		
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 

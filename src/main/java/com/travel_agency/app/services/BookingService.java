@@ -31,7 +31,7 @@ public class BookingService implements BookingServiceInterface{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Booking getById(Long id) {
+	public Booking getById(long id) {
 		Optional<Booking> booking=this.bookingRepo.findById(id);
 		if(booking.isPresent()) {
 			return booking.get();
@@ -47,7 +47,7 @@ public class BookingService implements BookingServiceInterface{
 
 	@Override
 	@Transactional
-	public void delete(Long id) {
+	public void delete(long id) {
 		this.bookingRepo.deleteById(id);	
 	}
 }
