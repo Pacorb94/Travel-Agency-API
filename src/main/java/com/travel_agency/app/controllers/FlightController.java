@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.travel_agency.app.exceptions.ModelNotFoundException;
+import com.travel_agency.app.exceptions.FlightNotFoundException;
 import com.travel_agency.app.models.Flight;
 import com.travel_agency.app.requests.FlightRequest;
 import com.travel_agency.app.services.FlightService;
@@ -34,7 +34,7 @@ public class FlightController {
 		if(flight != null) {
 			return ResponseEntity.ok(flight);
 		}
-		throw new ModelNotFoundException("Flight not found");
+		throw new FlightNotFoundException("Flight not found");
 	}
 	
 	@GetMapping("/by-seats/{seats}")
@@ -57,7 +57,7 @@ public class FlightController {
 			BeanUtils.copyProperties(request, flight);
 			return ResponseEntity.ok(this.flightService.save(flight));
 		}
-		throw new ModelNotFoundException("Flight not found");
+		throw new FlightNotFoundException("Flight not found");
 	}
 	
 	@DeleteMapping("/{id}")
@@ -67,6 +67,6 @@ public class FlightController {
 			this.flightService.delete(id);
 			return ResponseEntity.noContent().build();
 		}
-		throw new ModelNotFoundException("Flight not found");
+		throw new FlightNotFoundException("Flight not found");
 	}
 }
