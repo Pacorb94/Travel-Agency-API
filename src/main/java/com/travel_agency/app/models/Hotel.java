@@ -47,11 +47,12 @@ public class Hotel implements Serializable {
 	}
 	
 	public void setAllProperties(HotelRequest request) {
-		this.setName(request.getName());
-		this.setCity(request.getCity());
+		this.setName(request.getName().trim());
+		this.setCity(request.getCity().trim());
 		this.setCategory(request.getCategory());
 		this.setPlacesAvailable(request.getPlacesAvailable());
-		this.setPrice(request.getPrice());
+		//2 decimales
+		this.setPrice((float) (Math.round(request.getPrice() * 100.0) / 100.0));
 	}
 
 	public long getId() {
@@ -83,7 +84,7 @@ public class Hotel implements Serializable {
 	}
 
 	public float getPrice() {
-		return (float) (Math.round(price * 100.0) / 100.0);
+		return price;
 	}
 
 	public void setPrice(float price) {

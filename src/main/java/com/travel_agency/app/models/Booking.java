@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.travel_agency.app.requests.BookingRequest;
 
 @Entity
@@ -28,12 +29,12 @@ public class Booking implements Serializable {
 	@Column(nullable = false)
 	private int clientsNumber;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "flight_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Flight flight;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "hotel_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Hotel hotel;

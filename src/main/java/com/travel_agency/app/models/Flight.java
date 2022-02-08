@@ -46,11 +46,12 @@ public class Flight implements Serializable {
 	}
 
 	public void setAllProperties(FlightRequest request) {
-		this.setCompany(request.getCompany());
-		this.setPrice(request.getPrice());
+		this.setCompany(request.getCompany().trim());
+		//2 decimales
+		this.setPrice((float) (Math.round(request.getPrice() * 100.0) / 100.0));
 		this.setSeatsAvailable(request.getSeatsAvailable());
-		this.setOrigin(request.getOrigin());
-		this.setDestination(request.getDestination());
+		this.setOrigin(request.getOrigin().trim());
+		this.setDestination(request.getDestination().trim());
 	}
 
 	public long getId() {
@@ -66,7 +67,7 @@ public class Flight implements Serializable {
 	}
 
 	public float getPrice() {
-		return (float) (Math.round(price * 100.0) / 100.0);
+		return price;
 	}
 
 	public void setPrice(Float price) {
