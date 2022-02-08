@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.travel_agency.app.exceptions.ModelNotFoundException;
+import com.travel_agency.app.exceptions.HotelNotFoundException;
 import com.travel_agency.app.exceptions.NameAlreadyExistsException;
 import com.travel_agency.app.models.Hotel;
 import com.travel_agency.app.requests.HotelRequest;
@@ -33,12 +33,12 @@ public class HotelController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Hotel> getById(@PathVariable Long id){
+	public ResponseEntity<Hotel> getById(@PathVariable long id){
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
 			return ResponseEntity.ok(hotel);
 		}
-		throw new ModelNotFoundException("Hotel not found");
+		throw new HotelNotFoundException("Hotel not found");
 	}
 	
 	@GetMapping("/by-city/{city}")
@@ -53,7 +53,7 @@ public class HotelController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Hotel> update(
-			@PathVariable Long id,
+			@PathVariable long id,
 			@Valid @RequestBody HotelRequest request
 	){
 		Hotel hotel=this.hotelService.getById(id);
@@ -67,16 +67,16 @@ public class HotelController {
 			BeanUtils.copyProperties(request, hotel);
 			return ResponseEntity.ok(this.hotelService.save(hotel));	
 		}
-		throw new ModelNotFoundException("Hotel not found");
+		throw new HotelNotFoundException("Hotel not found");
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@PathVariable Long id){
+	public ResponseEntity<Object> delete(@PathVariable long id){
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
 			this.hotelService.delete(id);
 			return ResponseEntity.noContent().build();
 		}
-		throw new ModelNotFoundException("Hotel not found");
+		throw new HotelNotFoundException("Hotel not found");
 	}
 }

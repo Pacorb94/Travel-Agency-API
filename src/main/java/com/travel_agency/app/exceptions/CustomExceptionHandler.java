@@ -28,12 +28,30 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<Object>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@ExceptionHandler(ModelNotFoundException.class)
-	public ResponseEntity<Object> handleModelNotFoundException(
-			ModelNotFoundException ex
+	@ExceptionHandler(HotelNotFoundException.class)
+	public ResponseEntity<Object> handleHotelNotFoundException(
+			HotelNotFoundException ex
 	) {
 		List<String> details = new ArrayList<>();
 		ErrorResponse error = new ErrorResponse("Hotel not found", details);
+		return new ResponseEntity<Object>(error, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(FlightNotFoundException.class)
+	public ResponseEntity<Object> handleFlightNotFoundException(
+			FlightNotFoundException ex
+	) {
+		List<String> details = new ArrayList<>();
+		ErrorResponse error = new ErrorResponse("Flight not found", details);
+		return new ResponseEntity<Object>(error, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(BookingNotFoundException.class)
+	public ResponseEntity<Object> handleBookingNotFoundException(
+			BookingNotFoundException ex
+	) {
+		List<String> details = new ArrayList<>();
+		ErrorResponse error = new ErrorResponse("Booking not found", details);
 		return new ResponseEntity<Object>(error, HttpStatus.NOT_FOUND);
 	}
 	
@@ -43,6 +61,24 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	){
 		List<String> details = new ArrayList<>();
 		ErrorResponse error = new ErrorResponse("Name already exists", details);
+		return new ResponseEntity<Object>(error, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	@ExceptionHandler(NoSeatsAvailableException.class)
+	public ResponseEntity<Object> handleNoSeatsAvailableException(
+			NoSeatsAvailableException ex
+	){
+		List<String> details = new ArrayList<>();
+		ErrorResponse error = new ErrorResponse("No seats available for this flight", details);
+		return new ResponseEntity<Object>(error, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	@ExceptionHandler(NoPlacesAvailableException.class)
+	public ResponseEntity<Object> handleNoPlacesAvailableException(
+			NoPlacesAvailableException ex
+	){
+		List<String> details = new ArrayList<>();
+		ErrorResponse error = new ErrorResponse("No places available for this hotel", details);
 		return new ResponseEntity<Object>(error, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 
