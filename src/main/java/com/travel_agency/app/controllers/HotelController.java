@@ -33,7 +33,7 @@ public class HotelController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Hotel> getById(@PathVariable Long id){
+	public ResponseEntity<Hotel> getById(@PathVariable long id){
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
 			return ResponseEntity.ok(hotel);
@@ -53,7 +53,7 @@ public class HotelController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Hotel> update(
-			@PathVariable Long id,
+			@PathVariable long id,
 			@Valid @RequestBody HotelRequest request
 	){
 		Hotel hotel=this.hotelService.getById(id);
@@ -71,7 +71,7 @@ public class HotelController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@PathVariable Long id){
+	public ResponseEntity<Object> delete(@PathVariable long id){
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
 			this.hotelService.delete(id);
