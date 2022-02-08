@@ -31,7 +31,7 @@ public class HotelRequest {
 	}
 
 	public String getName() {
-		return name.trim();
+		return name;
 	}
 
 	public void setName(String name) {
@@ -39,7 +39,7 @@ public class HotelRequest {
 	}
 
 	public String getCity() {
-		return city.trim();
+		return city;
 	}
 
 	public void setCity(String city) {

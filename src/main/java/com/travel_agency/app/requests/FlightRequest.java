@@ -31,7 +31,7 @@ public class FlightRequest {
 	}
 
 	public String getCompany() {
-		return company.trim();
+		return company;
 	}
 
 	public void setCompany(String company) {
@@ -55,7 +55,7 @@ public class FlightRequest {
 	}
 
 	public String getOrigin() {
-		return origin.trim();
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
@@ -63,7 +63,7 @@ public class FlightRequest {
 	}
 
 	public String getDestination() {
-		return destination.trim();
+		return destination;
 	}
 
 	public void setDestination(String destination) {
