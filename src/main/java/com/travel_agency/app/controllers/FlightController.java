@@ -25,7 +25,7 @@ public class FlightController {
 	public ResponseEntity<Flight> create(@Valid @RequestBody FlightRequest request) {
 		Flight flight=new Flight();
 		flight.setAllProperties(request);
-		return ResponseEntity.ok(this.flightService.save(flight));
+		return ResponseEntity.created(null).body(this.flightService.save(flight));
 	}
 	
 	@GetMapping("/{id}")
