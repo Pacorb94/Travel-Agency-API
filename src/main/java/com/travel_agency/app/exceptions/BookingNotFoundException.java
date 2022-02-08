@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @SuppressWarnings("serial")
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class HotelNotFoundException extends RuntimeException {
+public class BookingNotFoundException extends RuntimeException {
 
-	public HotelNotFoundException(String message) {
+	public BookingNotFoundException(String message) {
 		super(message);
 	}
+
 }
