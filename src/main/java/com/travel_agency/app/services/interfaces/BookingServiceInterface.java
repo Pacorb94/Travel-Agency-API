@@ -11,9 +11,9 @@ public interface BookingServiceInterface {
 	
 	public List<Booking> getAll();
 	
-	public Booking getById(Long id);
+	public Booking getById(long id);
 	
 	public List<Booking> getByDni(String dni);
 	
-	public void delete(Long id);
+	public void delete(long id);
 }
