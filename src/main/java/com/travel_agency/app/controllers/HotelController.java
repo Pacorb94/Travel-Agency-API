@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.travel_agency.app.exceptions.ModelNotFoundException;
+import com.travel_agency.app.exceptions.HotelNotFoundException;
 import com.travel_agency.app.exceptions.NameAlreadyExistsException;
 import com.travel_agency.app.models.Hotel;
 import com.travel_agency.app.requests.HotelRequest;
@@ -38,7 +38,7 @@ public class HotelController {
 		if(hotel != null) {
 			return ResponseEntity.ok(hotel);
 		}
-		throw new ModelNotFoundException("Hotel not found");
+		throw new HotelNotFoundException("Hotel not found");
 	}
 	
 	@GetMapping("/by-city/{city}")
@@ -67,7 +67,7 @@ public class HotelController {
 			BeanUtils.copyProperties(request, hotel);
 			return ResponseEntity.ok(this.hotelService.save(hotel));	
 		}
-		throw new ModelNotFoundException("Hotel not found");
+		throw new HotelNotFoundException("Hotel not found");
 	}
 	
 	@DeleteMapping("/{id}")
@@ -77,6 +77,6 @@ public class HotelController {
 			this.hotelService.delete(id);
 			return ResponseEntity.noContent().build();
 		}
-		throw new ModelNotFoundException("Hotel not found");
+		throw new HotelNotFoundException("Hotel not found");
 	}
 }
