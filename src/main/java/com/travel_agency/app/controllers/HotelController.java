@@ -59,12 +59,12 @@ public class HotelController {
 		Hotel hotel=this.hotelService.getById(id);
 		if(hotel != null) {
 			Hotel hotelAux=this.hotelService.getByName(request.getName());
-			/*Comprobamos si el nombre ya existe y si el id es distinto al que
-			vamos a modificar*/
+			/*Comprobamos si el hotel con ese nombre ya existe y si el id 
+			 es distinto al que vamos a modificar*/
 			if(hotelAux != null && hotelAux.getId() != id) {
 				throw new NameAlreadyExistsException("Name already exists");
 			}
-			BeanUtils.copyProperties(request, hotel);
+			hotel.setAllProperties(request);
 			return ResponseEntity.ok(this.hotelService.save(hotel));	
 		}
 		throw new HotelNotFoundException("Hotel not found");

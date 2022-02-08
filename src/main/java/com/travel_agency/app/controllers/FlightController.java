@@ -54,7 +54,7 @@ public class FlightController {
 	){
 		Flight flight=this.flightService.getById(id);
 		if(flight != null) {
-			BeanUtils.copyProperties(request, flight);
+			flight.setAllProperties(request);
 			return ResponseEntity.ok(this.flightService.save(flight));
 		}
 		throw new FlightNotFoundException("Flight not found");
