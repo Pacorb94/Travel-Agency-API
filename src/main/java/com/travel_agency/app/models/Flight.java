@@ -53,7 +53,7 @@ public class Flight implements Serializable {
 		this.setDestination(request.getDestination());
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -65,7 +65,7 @@ public class Flight implements Serializable {
 		this.company = company;
 	}
 
-	public Float getPrice() {
+	public float getPrice() {
 		return (float) (Math.round(price * 100.0) / 100.0);
 	}
 
