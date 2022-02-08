@@ -29,7 +29,7 @@ public class HotelService implements HotelServiceInterface{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Hotel getById(Long id) {
+	public Hotel getById(long id) {
 		Optional<Hotel> hotel=this.hotelRepo.findById(id);
 		if(hotel.isPresent()) {
 			return hotel.get();
@@ -61,7 +61,7 @@ public class HotelService implements HotelServiceInterface{
 
 	@Override
 	@Transactional
-	public void delete(Long id) {
+	public void delete(long id) {
 		this.hotelRepo.deleteById(id);	
 	}
 }

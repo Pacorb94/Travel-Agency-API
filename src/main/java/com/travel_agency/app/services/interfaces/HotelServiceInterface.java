@@ -9,7 +9,7 @@ public interface HotelServiceInterface {
 	
 	public Hotel save(Hotel hotel);
 	
-	public Hotel getById(Long id);
+	public Hotel getById(long id);
 	
 	public Hotel getByName(String name);
 	
@@ -17,5 +17,5 @@ public interface HotelServiceInterface {
 	
 	public List<Hotel> getByPlacesAvailable(int places);
 	
-	public void delete(Long id);
+	public void delete(long id);
 }

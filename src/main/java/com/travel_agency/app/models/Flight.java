@@ -8,42 +8,51 @@ import javax.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.travel_agency.app.requests.FlightRequest;
 
 @Entity
 @Table(name = "flights")
 public class Flight implements Serializable {
 
 	private static final long serialVersionUID = -3831551379088382507L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private long id;
+
 	@Column(length = 45, nullable = false)
 	private String company;
-	
+
 	@Column(length = 10, nullable = false)
-	private Float price;
-	
+	private float price;
+
 	@Column(length = 3, nullable = false)
 	private int seatsAvailable;
-	
+
 	@Column(length = 45, nullable = false)
 	private String origin;
-	
+
 	@Column(length = 45, nullable = false)
 	private String destination;
-	
+
 	@CreationTimestamp
 	private Date createdAt;
 
 	@UpdateTimestamp
 	private Date updatedAt;
-	
+
 	public Flight() {
-		
+
 	}
-	
+
+	public void setAllProperties(FlightRequest request) {
+		this.setCompany(request.getCompany());
+		this.setPrice(request.getPrice());
+		this.setSeatsAvailable(request.getSeatsAvailable());
+		this.setOrigin(request.getOrigin());
+		this.setDestination(request.getDestination());
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -57,7 +66,7 @@ public class Flight implements Serializable {
 	}
 
 	public Float getPrice() {
-		return price;
+		return (float) (Math.round(price * 100.0) / 100.0);
 	}
 
 	public void setPrice(Float price) {
@@ -68,7 +77,7 @@ public class Flight implements Serializable {
 		return seatsAvailable;
 	}
 
-	public void setSeats(int seatsAvailable) {
+	public void setSeatsAvailable(int seatsAvailable) {
 		this.seatsAvailable = seatsAvailable;
 	}
 

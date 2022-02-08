@@ -30,7 +30,7 @@ public class FlightService implements FlightServiceInterface{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Flight getById(Long id) {
+	public Flight getById(long id) {
 		Optional<Flight> flight=this.flightRepo.findById(id);
 		if(flight.isPresent()) {
 			return flight.get();
@@ -52,7 +52,7 @@ public class FlightService implements FlightServiceInterface{
 
 	@Override
 	@Transactional
-	public void delete(Long id) {
+	public void delete(long id) {
 		this.flightRepo.deleteById(id);	
 	}
 }
