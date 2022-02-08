@@ -19,7 +19,7 @@ public class Hotel implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
 	@Column(length = 45, nullable = false, unique = true)
 	private String name;
@@ -54,7 +54,7 @@ public class Hotel implements Serializable {
 		this.setPrice(request.getPrice());
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -83,7 +83,7 @@ public class Hotel implements Serializable {
 	}
 
 	public float getPrice() {
-		return price;
+		return (float) (Math.round(price * 100.0) / 100.0);
 	}
 
 	public void setPrice(float price) {
