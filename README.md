@@ -7,7 +7,7 @@ API la cual es un CRUD de una agencia de viajes
 
 ## Requisitos
 - Java >=8
-- MySQL
+- MySQL o MariaDB
 
 ## Pasos
 1. Crear una base datos llamada travel_agency
