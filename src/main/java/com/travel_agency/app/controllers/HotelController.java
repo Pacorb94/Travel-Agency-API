@@ -40,12 +40,12 @@ public class HotelController {
 		throw new HotelNotFoundException("Hotel not found");
 	}
 	
-	@GetMapping("/by-city/{city}")
+	@GetMapping("/cities/{city}")
 	public ResponseEntity<List<Hotel>> getByCity(@PathVariable String city){
 		return ResponseEntity.ok(this.hotelService.getByCity(city));	
 	}
 	
-	@GetMapping("/by-places/{places}")
+	@GetMapping("/places/{places}")
 	public ResponseEntity<List<Hotel>> getByCity(@PathVariable int places){
 		return ResponseEntity.ok(this.hotelService.getByPlacesAvailable(places));	
 	}
