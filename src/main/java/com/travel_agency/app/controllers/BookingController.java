@@ -79,7 +79,7 @@ public class BookingController {
 		throw new BookingNotFoundException("Booking not found");
 	}
 	
-	@GetMapping("by-dni/{dni}")
+	@GetMapping("dnis/{dni}")
 	public ResponseEntity<List<Booking>> getByDni(@PathVariable String dni){
 		return ResponseEntity.ok(this.bookingService.getByDni(dni));
 	}
