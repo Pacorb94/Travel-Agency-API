@@ -36,12 +36,12 @@ public class FlightController {
 		throw new FlightNotFoundException("Flight not found");
 	}
 	
-	@GetMapping("/by-seats/{seats}")
+	@GetMapping("/seats/{seats}")
 	public ResponseEntity<List<Flight>> getBySeatsAvailable(@PathVariable int seats){
 		return ResponseEntity.ok(this.flightService.getBySeatsAvailable(seats));
 	}
 	
-	@GetMapping("/by-price/{price}")
+	@GetMapping("/prices/{price}")
 	public ResponseEntity<List<Flight>> getByPrice(@PathVariable float price){
 		return ResponseEntity.ok(this.flightService.getByPrice(price));
 	}
